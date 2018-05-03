@@ -1,0 +1,6 @@
+---
+- hosts: {{ host }}
+  roles:
+    - { role: "jenkins" }
+  become: yes
+ 
