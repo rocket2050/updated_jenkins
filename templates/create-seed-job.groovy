@@ -2,11 +2,6 @@ import jenkins.model.*
 
 def jobName = "SeedJob"
 
-//def git_url = System.getenv('SEEDJOB_GIT')
-//def svn_url = System.getenv('SEEDJOB_SVN')
-
-
-
 def configXml = """\
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
@@ -38,12 +33,12 @@ def configXml = """\
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>${GIT_REPO}</url>
+        <url>\${GIT_REPO}</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/${GIT_BRANCH}</name>
+        <name>*/\${GIT_BRANCH}</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -58,7 +53,7 @@ def configXml = """\
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.67">
-      <targets>${DSL_PATH}</targets>
+      <targets>\${DSL_PATH}</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>
