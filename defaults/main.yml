@@ -9,7 +9,7 @@ jenkins_home: "/var/lib/jenkins"
 jenkins_hostname: "localhost"
 jenkins_http_port: "8080"
 jenkins_jar_location: "/opt/jenkins-cli.jar"
-jenkins_plugins: [ant,git,maven-plugin,any-buildstep,artifactory,build-pipeline-plugin,build-timeout,chucknorris,google-login,google-play-android-publisher,htmlpublisher,postbuild-task,image-gallery,tmpcleaner,jobConfigHistory,m2release,nested-view,openid,performance,persona,role-strategy,schedule-build,selenium-axis,seleniumhtmlreport,sitemonitor,slack,sonar-gerrit,sonar,ssh,ssh-slaves,translation,build-user-vars-plugin,validating-string-parameter,view-job-filters,ws-cleanup,xvnc,job-dsl]
+jenkins_plugins: [ant,git,maven-plugin,any-buildstep,artifactory,build-pipeline-plugin,build-timeout,chucknorris,google-login,google-play-android-publisher,htmlpublisher,postbuild-task,image-gallery,tmpcleaner,jobConfigHistory,m2release,nested-view,openid,performance,persona,role-strategy,schedule-build,selenium-axis,seleniumhtmlreport,sitemonitor,slack,sonar-gerrit,sonar,ssh,ssh-slaves,translation,build-user-vars-plugin,validating-string-parameter,view-job-filters,ws-cleanup,xvnc,job-dsl,envinject]
 #jenkins_plugins: [ant]
 jenkins_url_prefix: ""
 jenkins_java_options: "-Djenkins.install.runSetupWizard=false"

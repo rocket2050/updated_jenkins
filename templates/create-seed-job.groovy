@@ -52,8 +52,16 @@ def configXml = """\
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.Shell>
+      <command>echo &quot;DSLPATH=\${DSL_PATH}/*.groovy&quot; &gt; propertyfile</command>
+    </hudson.tasks.Shell>
+    <EnvInjectBuilder plugin="envinject@2.1.5">
+      <info>
+        <propertiesFilePath>propertyfile</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.67">
-      <targets>\${DSL_PATH}</targets>
+      <targets>\${DSLPATH}</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>
