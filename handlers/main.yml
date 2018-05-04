@@ -12,4 +12,5 @@
   template:
     src: create-seed-job.groovy
     dest: "{{ jenkins_home }}/init.groovy.d/create-seed-job.groovy"
-  register: jenkins_users_config
+  register: jenkins_seed_job_config
+

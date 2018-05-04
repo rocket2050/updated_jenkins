@@ -37,11 +37,13 @@
     group: jenkins
     mode: 0775
 
+
 - name: Trigger handlers immediately in case Jenkins was installed
   meta: flush_handlers
 
 - name: Immediately restart Jenkins on http or user changes.
   service: name=jenkins state=restarted
-#  when: (jenkins_users_config is defined and jenkins_users_config.changed) or
-#        (jenkins_http_config is defined and jenkins_http_config.changed) or
-#        (jenkins_home_config is defined and jenkins_home_config.changed)
+  when: (jenkins_users_config is defined and jenkins_users_config.changed) or
+        (jenkins_seed_job_config is defined and jenkins_seed_job_config.changed) or
+        (jenkins_http_config is defined and jenkins_http_config.changed) or
+        (jenkins_home_config is defined and jenkins_home_config.changed)
