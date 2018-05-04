@@ -7,3 +7,9 @@
     src: basic-security.groovy
     dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
   register: jenkins_users_config
+
+- name: configure seed job
+  template:
+    src: create-seed-job.groovy
+    dest: "{{ jenkins_home }}/init.groovy.d/create-seed-job.groovy"
+  register: jenkins_users_config
