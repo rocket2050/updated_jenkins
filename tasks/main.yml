@@ -1,7 +1,7 @@
 ---
 # Variable setup.
-- name: Change hostname
-  hostname: name=jenkins 
+#- name: Change hostname
+#  hostname: name=jenkins 
 
 # Setup/install tasks.
 - name: Ensure dependencies are installed.
