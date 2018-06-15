@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - osm_jenkins
+ # become: yes
+ 
