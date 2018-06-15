@@ -1,6 +1,6 @@
 ---
-- hosts: {{ host }}
+- hosts: all
   roles:
-    - { role: "jenkins" }
-  become: yes
+    - osm_jenkins
+ # become: yes
  

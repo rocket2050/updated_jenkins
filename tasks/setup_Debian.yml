@@ -1,32 +1,41 @@
 ---
 # Variable setup.
-- name: Include OS-Specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
-
-- name: Define jenkins_repo_url
-  set_fact:
-    jenkins_repo_url: "{{ __jenkins_repo_url }}"
-  when: jenkins_repo_url is not defined
-
-- name: Define jenkins_repo_key_url
-  set_fact:
-    jenkins_repo_key_url: "{{ __jenkins_repo_key_url }}"
-  when: jenkins_repo_key_url is not defined
-
-- name: Define jenkins_pkg_url
-  set_fact:
-    jenkins_pkg_url: "{{ __jenkins_pkg_url }}"
-  when: jenkins_pkg_url is not defined
+#- name: Change hostname
+#  hostname: name=jenkins 
 
 # Setup/install tasks.
-- include: setup_RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Ensure dependencies are installed.
+  apt: name=curl state=installed
 
-- include: setup_Debian.yml
-  when: ansible_os_family == 'Debian'
+- name: Add Jenkins apt repository key.
+  apt_key: url={{ jenkins_repo_key_url }} state=present
+
+- name: Add Jenkins apt repository.
+  apt_repository: repo={{ jenkins_repo_url }} state=present update_cache=yes
+
+- name: Download specific Jenkins version.
+  get_url:
+    url: "{{ jenkins_pkg_url }}/jenkins_{{ jenkins_version }}_all.deb"
+    dest: "/tmp/jenkins.deb"
+  when: jenkins_version is defined
+
+- name: Check if we downloaded a specific version of Jenkins.
+  stat: path="/tmp/jenkins.deb"
+  register: specific_version
+
+- name: Install our specific version of Jenkins.
+  apt:
+    deb: "/tmp/jenkins.deb"
+    state: installed
+  when: specific_version.stat.exists
+  notify: configure default users
+
+- name: Validate Jenkins is installed and register package name.
+  apt: name=jenkins state=present
+  notify: configure default users
 
 # Configure Jenkins init settings.
-- include: settings.yml
+- include_tasks: settings.yml
 
 # Make sure Jenkins starts, then configure Jenkins.
 - name: Ensure Jenkins is started and runs on startup.
@@ -56,4 +65,3 @@
 
 # Update Jenkins and install configured plugins.
 - include_tasks: plugins.yml
-

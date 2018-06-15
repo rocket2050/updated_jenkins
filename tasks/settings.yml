@@ -37,12 +37,6 @@
     group: jenkins
     mode: 0775
 
-- name: configure seed job
-  template:
-    src: create-seed-job.groovy
-    dest: "{{ jenkins_home }}/init.groovy.d/create-seed-job.groovy"
-  register: jenkins_seed_job_config
-
 - name: Disable DSL security
   template:
     src: disableDSLSecurity.groovy
