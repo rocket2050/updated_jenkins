@@ -14,15 +14,8 @@ The system hostname; usually `localhost` works fine. This will be used during se
     
 The location at which the `jenkins-cli.jar` jarfile will be kept. This is used for communicating with Jenkins via the CLI.
 
-
-
-    jenkins_plugins:
-      - git
-      - sonar
-      - ssh
-
-Jenkins plugins to be installed automatically during provisioning. You can always install more plugins via the Jenkins UI at a 
-later time, but this is helpful in getting things up and running more quickly.
+Jenkins plugins to be installed automatically during provisioning. You can always install more plugins via the Jenkins UI at a later time, but this is helpful in getting things up and running more quickly.
+Jenkins plugins are defined in defaults.
 
 ## Dependencies
 
@@ -33,7 +26,7 @@ later time, but this is helpful in getting things up and running more quickly.
 ---
 - hosts: all
   roles:
-    - osm_jenkins
+    - rolename
   become: yes
   
   
