@@ -25,6 +25,7 @@ Jenkins plugins are defined in defaults.
 
 ---
 - hosts: all
+  
   roles:
     - rolename
     
