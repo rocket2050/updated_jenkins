@@ -1,6 +1,6 @@
 ---
 - hosts: all
   roles:
-    - osm_jenkins
+    - updated_jenkins
  # become: yes
  
